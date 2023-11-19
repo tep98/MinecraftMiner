@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 
 public class BlockBreacking : MonoBehaviour, IPointerDownHandler, IPointerUpHandler
 {
-    [SerializeField] Animator anim;
+    [SerializeField] private Animator anim;
 
     public void OnPointerDown(PointerEventData eventData)
     {
