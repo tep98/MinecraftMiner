@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      DarkWoodLogs_0: -5713974157456911900
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

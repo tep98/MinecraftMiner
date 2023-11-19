@@ -1,10 +1,10 @@
 fileFormatVersion: 2
-guid: df20c4ddc3e430f42ae552d031521fbd
+guid: bb17aabaf610f5342b2a314c99bd287d
 TextureImporter:
   internalIDToNameTable:
   - first:
-      213: -2889994849998602428
-    second: BlackBrick_0
+      213: 1438654142220854169
+    second: Ads button_0
   externalObjects: {}
   serializedVersion: 13
   mipmaps:
@@ -126,13 +126,13 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: BlackBrick_0
+      name: Ads button_0
       rect:
         serializedVersion: 2
         x: 0
-        y: 0
-        width: 120
-        height: 120
+        y: 30
+        width: 512
+        height: 452
       alignment: 0
       pivot: {x: 0, y: 0}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -140,8 +140,8 @@ TextureImporter:
       physicsShape: []
       tessellationDetail: -1
       bones: []
-      spriteID: 44fff1beefca4e7d0800000000000000
-      internalID: -2889994849998602428
+      spriteID: 993e7bde15027f310800000000000000
+      internalID: 1438654142220854169
       vertices: []
       indices: 
       edges: []
@@ -156,8 +156,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      BlackBrick_0: -2889994849998602428
+    nameFileIdTable: {}
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

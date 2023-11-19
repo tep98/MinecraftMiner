@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BlueWool_0: -4565852697846725791
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 

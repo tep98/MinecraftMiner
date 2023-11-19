@@ -156,7 +156,8 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable: {}
+    nameFileIdTable:
+      BrownWool_0: -2093142959921104240
   mipmapLimitGroupName: 
   pSDRemoveMatte: 0
   userData: 
