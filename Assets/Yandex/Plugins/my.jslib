@@ -87,4 +87,48 @@ mergeInto(LibraryManager.library, {
     stringToUTF8(lang, buffer, bufferSize);
     return buffer;
   },
+
+  StartGame : function(){
+    initPlayer();
+  },
+
+  SaveExtern: function(date){
+      try {
+          var dateString = UTF8ToString(date);
+          console.log(dateString);
+          var myobj = JSON.parse(dateString);
+          // Предполагается, что player имеет метод setData
+          player.setData(myobj);
+          // Добавьте вызов функции сохранения внутри SaveExtern
+          myGameInstance.SendMessage('Progress', 'SetPlayerInfo', dateString);
+      } catch (error) {
+          console.error("Error in SaveExtern:", error);
+      }
+  },
+
+
+
+//   LoadExtern : function(){
+//     initPlayer().then(() => {
+//         return player.getData();
+//     }).then(_date => {
+//         const myJSON = JSON.stringify(_date);
+//         console.log("Loaded data from external source: " + myJSON);
+//         myGameInstance.SendMessage('Progress', 'SetPlayerInfo', myJSON);
+//     });
+// },
+
+  LoadExtern : function(){
+      initPlayer();
+      player.getData().then(_date => {
+          const myJSON = JSON.stringify(_date);
+          console.log("Loaded data from external source: " + myJSON);
+          myGameInstance.SendMessage('Progress', 'SetPlayerInfo', myJSON);
+      }).catch(error => {
+          console.error("Error loading data from external source:", error);
+      });
+},
+
+
+
 });

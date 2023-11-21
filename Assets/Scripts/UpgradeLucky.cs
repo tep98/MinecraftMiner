@@ -25,6 +25,10 @@ public class UpgradeLucky : MonoBehaviour
     private string currentMaxText;
     private void Start()
     {
+        currentLevel = Progress.Instance.PlayerInfo.luckyLevel;
+        costOfUpgrade = Progress.Instance.PlayerInfo.costLuckyUpgrade;
+        StartSetText();
+
         if (Language.Instance.currentLanguage == "en")
         {
             currentMaxText = _en;
@@ -48,6 +52,7 @@ public class UpgradeLucky : MonoBehaviour
         {
             SetMax();
         }
+        Progress.Instance.Save();
     }
 
     public void Upgrade()
@@ -55,9 +60,25 @@ public class UpgradeLucky : MonoBehaviour
         randomButtonPlace.UpgradeLuckyLevel();
         moneyManager.RemoveMoney(costOfUpgrade);
         costOfUpgrade *= 2;
-        costText.text = costOfUpgrade.ToString();
         currentLevel++;
+        SetText();
+    }
+
+    public void StartSetText()
+    {
+        costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
+    }
+
+    public void SetText()
+    {
+        costText.text = costOfUpgrade.ToString();
+        levelText.text = currentLevel.ToString();
+
+        Progress.Instance.PlayerInfo.luckyLevel = currentLevel;
+        Progress.Instance.PlayerInfo.costLuckyUpgrade = costOfUpgrade;
+
+        Progress.Instance.Save();
     }
 
     public void SetMax()

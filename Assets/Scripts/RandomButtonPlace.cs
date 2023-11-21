@@ -25,7 +25,9 @@ public class RandomButtonPlace : MonoBehaviour
 
     private void Start()
     {
-        luckyLevel = luckyRatio.Length;        
+        luckyLevel = luckyRatio.Length;
+        Debug.Log(luckyRatio.Length);
+        luckyLevel = Progress.Instance.PlayerInfo.realLuckyLevel;
     }
     public void SetNewPosition()
     {
@@ -42,11 +44,13 @@ public class RandomButtonPlace : MonoBehaviour
     {
         if ( luckyLevel > 1 ) 
         {
-            luckyLevel--;   
+            luckyLevel--;
+            Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
         }
         else
         {
             upgradeLucky.SetMax();
+            Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
         }
     }
 

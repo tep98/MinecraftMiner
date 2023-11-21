@@ -17,6 +17,14 @@ public class UpgradePickaxe : MonoBehaviour
 
     [DllImport("__Internal")]
     private static extern void AddPickaxeLevel();
+
+    private void Start()
+    {
+        costOfUpgrade = Progress.Instance.PlayerInfo.costPickaxeUpgrade;
+        speed = Progress.Instance.PlayerInfo.pickaxeSpeed;
+        currentLevel = Progress.Instance.PlayerInfo.pickaxeLevel;
+        StartSetText();
+    }
     public void UpgradeCheck()
     {
         if(moneyManager.totalMoney >= costOfUpgrade)
@@ -31,9 +39,28 @@ public class UpgradePickaxe : MonoBehaviour
         anim.SetFloat("animSpeed", speed);
         moneyManager.RemoveMoney(costOfUpgrade);
         costOfUpgrade *= 2;
-        costText.text = costOfUpgrade.ToString();
         currentLevel++;
+        SetText();
+        // Добавьте логи для отладки
+        Debug.Log("Upgraded Pickaxe. Speed: " + speed + ", Cost: " + costOfUpgrade + ", Level: " + currentLevel);
+    }
+
+    public void StartSetText()
+    {
+        costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
+    }
+
+    public void SetText()
+    {
+        costText.text = costOfUpgrade.ToString();
+        levelText.text = currentLevel.ToString();
+
+        Progress.Instance.PlayerInfo.costPickaxeUpgrade = costOfUpgrade;
+        Progress.Instance.PlayerInfo.pickaxeSpeed = speed;
+        Progress.Instance.PlayerInfo.pickaxeLevel = currentLevel;
+
+        Progress.Instance.Save();
     }
 
     public void ShowAdForUpgradePickaxe() //функция для кнопки

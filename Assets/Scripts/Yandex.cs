@@ -7,9 +7,13 @@ public class Yandex : MonoBehaviour
 {
     [DllImport("__Internal")]
     private static extern void StartAdBanner();
+
+    [DllImport("__Internal")]
+    private static extern void StartGame();
     private void Start()
     {
-        InvokeRepeating("ShowAdBanner", 10, 60);
+        StartGame();
+        InvokeRepeating("ShowAdBanner", 0, 60);
     }
 
     private void ShowAdBanner()

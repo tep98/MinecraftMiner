@@ -12,6 +12,12 @@ public class MoneyManager : MonoBehaviour
     [DllImport("__Internal")]
     private static extern void AddMoney();
 
+    private void Start()
+    {
+        totalMoney = Progress.Instance.PlayerInfo.coins;
+        StartSetText();
+    }
+
     public void AddMoney(int money)
     {
         totalMoney += money;
@@ -24,9 +30,15 @@ public class MoneyManager : MonoBehaviour
         SetText();
     }
 
+    private void StartSetText()
+    {
+        moneyText.text = totalMoney.ToString();
+    }
     private void SetText()
     {
         moneyText.text = totalMoney.ToString();
+        Progress.Instance.PlayerInfo.coins = totalMoney;
+        Progress.Instance.Save();
     }
 
     public void ShowAdForBonusMoney() //функция для кнопки
