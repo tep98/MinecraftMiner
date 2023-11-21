@@ -7,11 +7,11 @@ using UnityEngine.UI;
 public class UpgradePickaxe : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    private float speed = 0.5f;
-    private int costOfUpgrade = 10;
+    private float speed;
+    private int costOfUpgrade;
     [SerializeField] private Text costText;
     [SerializeField] private Text levelText;
-    public int currentLevel = 1;
+    public int currentLevel;
 
     [SerializeField] MoneyManager moneyManager;
 
@@ -56,11 +56,16 @@ public class UpgradePickaxe : MonoBehaviour
         costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
 
-        Progress.Instance.PlayerInfo.costPickaxeUpgrade = costOfUpgrade;
-        Progress.Instance.PlayerInfo.pickaxeSpeed = speed;
-        Progress.Instance.PlayerInfo.pickaxeLevel = currentLevel;
+        if (Progress.Instance.PlayerInfo.costPickaxeUpgrade != costOfUpgrade ||
+        Progress.Instance.PlayerInfo.pickaxeSpeed != speed ||
+        Progress.Instance.PlayerInfo.pickaxeLevel != currentLevel)
+        {
+            Progress.Instance.PlayerInfo.costPickaxeUpgrade = costOfUpgrade;
+            Progress.Instance.PlayerInfo.pickaxeSpeed = speed;
+            Progress.Instance.PlayerInfo.pickaxeLevel = currentLevel;
 
-        Progress.Instance.Save();
+            Progress.Instance.Save();
+        }
     }
 
     public void ShowAdForUpgradePickaxe() //функция для кнопки

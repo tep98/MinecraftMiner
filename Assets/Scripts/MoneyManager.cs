@@ -6,7 +6,7 @@ using UnityEngine.UI;
 
 public class MoneyManager : MonoBehaviour
 {
-    public int totalMoney = 0;
+    public int totalMoney;
     [SerializeField] Text moneyText;
 
     [DllImport("__Internal")]
@@ -37,8 +37,12 @@ public class MoneyManager : MonoBehaviour
     private void SetText()
     {
         moneyText.text = totalMoney.ToString();
-        Progress.Instance.PlayerInfo.coins = totalMoney;
-        Progress.Instance.Save();
+
+        if (Progress.Instance.PlayerInfo.coins != totalMoney)
+        {
+            Progress.Instance.PlayerInfo.coins = totalMoney;
+            Progress.Instance.Save();
+        } 
     }
 
     public void ShowAdForBonusMoney() //функция для кнопки

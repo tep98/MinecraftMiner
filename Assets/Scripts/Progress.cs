@@ -6,13 +6,22 @@ using System.Runtime.InteropServices;
 [System.Serializable]
 public class PlayerInfo
 {
-    public int coins = 0;
+/*    public int coins = 0;
     public int pickaxeLevel = 1;
     public int luckyLevel = 1;
     public int realLuckyLevel = 85;
     public int costPickaxeUpgrade = 10;
     public float pickaxeSpeed = 0.5f;
-    public int costLuckyUpgrade = 10;
+    public int costLuckyUpgrade = 10;*/
+
+    public int coins;
+    public int pickaxeLevel;
+    public int luckyLevel;
+    public int realLuckyLevel;
+    public int costPickaxeUpgrade;
+    public float pickaxeSpeed;
+    public int costLuckyUpgrade;
+
 }
 
 
@@ -26,7 +35,7 @@ public class Progress : MonoBehaviour
     private static extern void LoadExtern();
 
     public static Progress Instance;
-    private void Start()
+    private void Awake()
     {
         if (Instance == null)
         {
@@ -52,9 +61,13 @@ public class Progress : MonoBehaviour
     public void SetPlayerInfo(string value)
     {
         PlayerInfo = JsonUtility.FromJson<PlayerInfo>(value);
-        // Обновляем данные в Unity
-        // ...
-    }
 
+        Debug.Log(Progress.Instance.PlayerInfo.coins);
+        Debug.Log(Progress.Instance.PlayerInfo.costPickaxeUpgrade);
+        Debug.Log(Progress.Instance.PlayerInfo.pickaxeSpeed);
+        Debug.Log(Progress.Instance.PlayerInfo.pickaxeLevel);
+        Debug.Log(Progress.Instance.PlayerInfo.luckyLevel);
+        Debug.Log(Progress.Instance.PlayerInfo.costLuckyUpgrade);
+    }
 
 }

@@ -107,27 +107,34 @@ mergeInto(LibraryManager.library, {
   },
 
 
+  LoadExtern: function(){
+    player.getData(['pickaxeLevel', 'coins', 'luckyLevel', 'realLuckyLevel', 'costPickaxeUpgrade', 'pickaxeSpeed', 'costLuckyUpgrade']).then(data => {
+      const pickaxeLevel = data.pickaxeLevel || 0;
+      const coins = data.coins || 0;
+      const luckyLevel = data.luckyLevel || 0;
+      const realLuckyLevel = data.realLuckyLevel || 0;
+      const costPickaxeUpgrade = data.costPickaxeUpgrade || 0;
+      const pickaxeSpeed = data.pickaxeSpeed || 0;
+      const costLuckyUpgrade = data.costLuckyUpgrade || 0;
+
+      const myJSON = JSON.stringify({ pickaxeLevel: pickaxeLevel, coins: coins, luckyLevel: luckyLevel, realLuckyLevel: realLuckyLevel, costPickaxeUpgrade: costPickaxeUpgrade, pickaxeSpeed: pickaxeSpeed, costLuckyUpgrade: costLuckyUpgrade });
+      myGameInstance.SendMessage('Progress', 'SetPlayerInfo', myJSON);
+    }).catch(error => {
+      console.error("Ошибка при получении данных: ", error);
+    });
+  }
+
 
 //   LoadExtern : function(){
-//     initPlayer().then(() => {
-//         return player.getData();
-//     }).then(_date => {
-//         const myJSON = JSON.stringify(_date);
-//         console.log("Loaded data from external source: " + myJSON);
-//         myGameInstance.SendMessage('Progress', 'SetPlayerInfo', myJSON);
-//     });
+//       initPlayer();
+//       player.getData().then(_date => {
+//           const myJSON = JSON.stringify(_date);
+//           console.log("Loaded data from external source: " + myJSON);
+//           myGameInstance.SendMessage('Progress', 'SetPlayerInfo', myJSON);
+//       }).catch(error => {
+//           console.error("Error loading data from external source:", error);
+//       });
 // },
-
-  LoadExtern : function(){
-      initPlayer();
-      player.getData().then(_date => {
-          const myJSON = JSON.stringify(_date);
-          console.log("Loaded data from external source: " + myJSON);
-          myGameInstance.SendMessage('Progress', 'SetPlayerInfo', myJSON);
-      }).catch(error => {
-          console.error("Error loading data from external source:", error);
-      });
-},
 
 
 

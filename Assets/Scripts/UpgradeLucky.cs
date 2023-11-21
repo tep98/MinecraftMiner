@@ -6,10 +6,10 @@ using UnityEngine.UI;
 
 public class UpgradeLucky : MonoBehaviour
 {
-    private int costOfUpgrade = 10;
+    private int costOfUpgrade;
     [SerializeField] private Text costText;
     [SerializeField] private Text levelText;
-    public int currentLevel = 1;
+    public int currentLevel;
 
     [SerializeField] MoneyManager moneyManager;
     [SerializeField] RandomButtonPlace randomButtonPlace;
@@ -61,7 +61,11 @@ public class UpgradeLucky : MonoBehaviour
         moneyManager.RemoveMoney(costOfUpgrade);
         costOfUpgrade *= 2;
         currentLevel++;
-        SetText();
+
+        if (Progress.Instance.PlayerInfo.luckyLevel != currentLevel || Progress.Instance.PlayerInfo.costLuckyUpgrade != costOfUpgrade)
+        {
+            SetText();
+        }
     }
 
     public void StartSetText()
@@ -75,10 +79,13 @@ public class UpgradeLucky : MonoBehaviour
         costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
 
-        Progress.Instance.PlayerInfo.luckyLevel = currentLevel;
-        Progress.Instance.PlayerInfo.costLuckyUpgrade = costOfUpgrade;
+        if (Progress.Instance.PlayerInfo.luckyLevel != currentLevel || Progress.Instance.PlayerInfo.costLuckyUpgrade != costOfUpgrade)
+        {
+            Progress.Instance.PlayerInfo.luckyLevel = currentLevel;
+            Progress.Instance.PlayerInfo.costLuckyUpgrade = costOfUpgrade;
 
-        Progress.Instance.Save();
+            Progress.Instance.Save();
+        }  
     }
 
     public void SetMax()

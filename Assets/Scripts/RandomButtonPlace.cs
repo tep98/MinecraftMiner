@@ -13,10 +13,10 @@ public class RandomButtonPlace : MonoBehaviour
     private int randBlock;
     private Transform currentPlace;
 
-    private int costOfBlock = 3;
+    private int costOfBlock;
     [SerializeField] MoneyManager moneyManager;
 
-    private int[] luckyRatio = {10, 5, 5, 5, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
+    public int[] luckyRatio = {10, 5, 5, 5, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
     private int randNum;
 
     private int luckyLevel;
@@ -25,8 +25,6 @@ public class RandomButtonPlace : MonoBehaviour
 
     private void Start()
     {
-        luckyLevel = luckyRatio.Length;
-        Debug.Log(luckyRatio.Length);
         luckyLevel = Progress.Instance.PlayerInfo.realLuckyLevel;
     }
     public void SetNewPosition()
@@ -46,11 +44,15 @@ public class RandomButtonPlace : MonoBehaviour
         {
             luckyLevel--;
             Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
+            Progress.Instance.Save();
         }
         else
         {
             upgradeLucky.SetMax();
-            Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
+            if (Progress.Instance.PlayerInfo.realLuckyLevel != luckyLevel)
+            {
+                Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
+            }   
         }
     }
 
