@@ -31,13 +31,13 @@ public class UpgradePickaxe : MonoBehaviour
         }
     }
 
-    public void Upgrade()
+    public void Upgrade(int levels = 1)
     {
         speed += 0.2f;
         anim.SetFloat("animSpeed", speed);
         moneyManager.RemoveMoney(costOfUpgrade);
         costOfUpgrade *= 2;
-        currentLevel++;
+        currentLevel+= levels;
         SetText();
         // Добавьте логи для отладки
         Debug.Log("Upgraded Pickaxe. Speed: " + speed + ", Cost: " + costOfUpgrade + ", Level: " + currentLevel);
@@ -74,14 +74,4 @@ public class UpgradePickaxe : MonoBehaviour
         Time.timeScale = 0;
         //music.volume = 0f;
     }*/
-
-    public void AddLevels()
-    {
-        Time.timeScale = 1f;
-        //music.volume = 1f;
-        for (int i = 0; i<3; i++)
-        {
-            Upgrade();
-        }
-    }
 }

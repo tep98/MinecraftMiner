@@ -44,19 +44,4 @@ public class MoneyManager : MonoBehaviour
             Progress.Instance.Save();
         } */
     }
-
-    public void ShowAdForBonusMoney() //функция для кнопки
-    {
-        AddMoney(100);
-        Time.timeScale = 0;
-        //music.volume = 0f;
-    }
-
-    public void AddBonusMoney()
-    {
-        Time.timeScale = 1f;
-        //music.volume = 1f;
-        totalMoney += 100;
-        SetText();
-    }
 }

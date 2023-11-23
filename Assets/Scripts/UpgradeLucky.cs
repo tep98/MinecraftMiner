@@ -51,12 +51,12 @@ public class UpgradeLucky : MonoBehaviour
         
         if (YandexGame.EnvironmentData.language == "en")
         {
-            currentMaxText = "max";
+            currentMaxText = _en;
         }
 
         if (YandexGame.EnvironmentData.language == "ru")
         {
-            currentMaxText = "макс";
+            currentMaxText = _ru;
         }
     }
 
@@ -73,12 +73,12 @@ public class UpgradeLucky : MonoBehaviour
 /*        Progress.Instance.Save();*/
     }
 
-    public void Upgrade()
+    public void Upgrade(int levels = 1)
     {
         randomButtonPlace.UpgradeLuckyLevel();
         moneyManager.RemoveMoney(costOfUpgrade);
         costOfUpgrade *= 2;
-        currentLevel++;
+        currentLevel+= levels;
 
         SetText();
 
@@ -122,14 +122,4 @@ public class UpgradeLucky : MonoBehaviour
         Time.timeScale = 0;
         //music.volume = 0f;
     }*/
-
-    public void AddLevels()
-    {
-        Time.timeScale = 1f;
-        //music.volume = 1f;
-        for (int i = 0; i < 3; i++)
-        {
-            Upgrade();
-        }
-    }
 }
