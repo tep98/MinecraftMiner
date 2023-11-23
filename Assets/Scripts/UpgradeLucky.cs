@@ -18,13 +18,12 @@ public class UpgradeLucky : MonoBehaviour
 
     private bool max = false;
 
-    [DllImport("__Internal")]
-    private static extern void AddLuckyLevel();
 
     [SerializeField] string _en;
     [SerializeField] string _ru;
 
     private string currentMaxText;
+
 /*    private void Start()
     {
         currentLevel = Progress.Instance.PlayerInfo.luckyLevel;
@@ -48,7 +47,7 @@ public class UpgradeLucky : MonoBehaviour
         {
             await Task.Delay(200);
         }
-        Task.Delay(100);
+        await Task.Delay(100);
         
         if (YandexGame.EnvironmentData.language == "en")
         {
@@ -117,12 +116,12 @@ public class UpgradeLucky : MonoBehaviour
         max = true;
     }
 
-    public void ShowAdForUpgradeLucky() //функция для кнопки
+/*    public void ShowAdForUpgradeLucky() //функция для кнопки
     {
         AddLuckyLevel();
         Time.timeScale = 0;
         //music.volume = 0f;
-    }
+    }*/
 
     public void AddLevels()
     {

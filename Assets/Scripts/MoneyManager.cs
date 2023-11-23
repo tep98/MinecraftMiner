@@ -10,9 +10,6 @@ public class MoneyManager : MonoBehaviour
     public int totalMoney = 0;
     [SerializeField] Text moneyText;
 
-    [DllImport("__Internal")]
-    private static extern void AddMoney();
-
     private void Start()
     {
         YandexGame.FullscreenShow();
@@ -50,7 +47,7 @@ public class MoneyManager : MonoBehaviour
 
     public void ShowAdForBonusMoney() //функция для кнопки
     {
-        AddMoney();
+        AddMoney(100);
         Time.timeScale = 0;
         //music.volume = 0f;
     }

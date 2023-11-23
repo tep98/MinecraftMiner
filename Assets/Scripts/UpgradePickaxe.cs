@@ -16,9 +16,6 @@ public class UpgradePickaxe : MonoBehaviour
 
     [SerializeField] MoneyManager moneyManager;
 
-    [DllImport("__Internal")]
-    private static extern void AddPickaxeLevel();
-
 /*    private void Start()
     {
         costOfUpgrade = Progress.Instance.PlayerInfo.costPickaxeUpgrade;
@@ -71,12 +68,12 @@ public class UpgradePickaxe : MonoBehaviour
         }*/
     }
 
-    public void ShowAdForUpgradePickaxe() //функция для кнопки
+/*    public void ShowAdForUpgradePickaxe() //функция для кнопки
     {
         AddPickaxeLevel();
         Time.timeScale = 0;
         //music.volume = 0f;
-    }
+    }*/
 
     public void AddLevels()
     {
