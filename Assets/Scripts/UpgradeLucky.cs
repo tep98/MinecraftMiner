@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
+using System.Threading.Tasks;
 
 public class UpgradeLucky : MonoBehaviour
 {
-    private int costOfUpgrade;
+    private int costOfUpgrade = 10;
     [SerializeField] private Text costText;
     [SerializeField] private Text levelText;
-    public int currentLevel;
+    public int currentLevel = 1;
 
     [SerializeField] MoneyManager moneyManager;
     [SerializeField] RandomButtonPlace randomButtonPlace;
@@ -23,25 +25,42 @@ public class UpgradeLucky : MonoBehaviour
     [SerializeField] string _ru;
 
     private string currentMaxText;
-    private void Start()
+/*    private void Start()
     {
         currentLevel = Progress.Instance.PlayerInfo.luckyLevel;
         costOfUpgrade = Progress.Instance.PlayerInfo.costLuckyUpgrade;
         StartSetText();
+    }*/
 
-        if (Language.Instance.currentLanguage == "en")
+    private void OnEnable()
+    {
+        YandexGame.GetDataEvent += GetData;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.GetDataEvent -= GetData;
+    }
+
+    public async void GetData()
+    {
+        while (!YandexGame.SDKEnabled)
         {
-            currentMaxText = _en;
+            await Task.Delay(200);
         }
-        else if (Language.Instance.currentLanguage == "ru")
+        Task.Delay(100);
+        
+        if (YandexGame.EnvironmentData.language == "en")
         {
-            currentMaxText = _ru;
+            currentMaxText = "max";
         }
-        else
+
+        if (YandexGame.EnvironmentData.language == "ru")
         {
-            currentMaxText = _en;
+            currentMaxText = "макс";
         }
     }
+
     public void UpgradeCheck()
     {
         if (moneyManager.totalMoney >= costOfUpgrade && !max)
@@ -52,7 +71,7 @@ public class UpgradeLucky : MonoBehaviour
         {
             SetMax();
         }
-        Progress.Instance.Save();
+/*        Progress.Instance.Save();*/
     }
 
     public void Upgrade()
@@ -62,30 +81,33 @@ public class UpgradeLucky : MonoBehaviour
         costOfUpgrade *= 2;
         currentLevel++;
 
-        if (Progress.Instance.PlayerInfo.luckyLevel != currentLevel || Progress.Instance.PlayerInfo.costLuckyUpgrade != costOfUpgrade)
-        {
-            SetText();
-        }
+        SetText();
+
+        YandexGame.FullscreenShow();
+        /*        if (Progress.Instance.PlayerInfo.luckyLevel != currentLevel || Progress.Instance.PlayerInfo.costLuckyUpgrade != costOfUpgrade)
+                {
+                    SetText();
+                }*/
     }
 
-    public void StartSetText()
+/*    public void StartSetText()
     {
         costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
-    }
+    }*/
 
     public void SetText()
     {
         costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
 
-        if (Progress.Instance.PlayerInfo.luckyLevel != currentLevel || Progress.Instance.PlayerInfo.costLuckyUpgrade != costOfUpgrade)
+/*        if (Progress.Instance.PlayerInfo.luckyLevel != currentLevel || Progress.Instance.PlayerInfo.costLuckyUpgrade != costOfUpgrade)
         {
             Progress.Instance.PlayerInfo.luckyLevel = currentLevel;
             Progress.Instance.PlayerInfo.costLuckyUpgrade = costOfUpgrade;
 
             Progress.Instance.Save();
-        }  
+        }  */
     }
 
     public void SetMax()

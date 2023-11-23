@@ -3,28 +3,29 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class UpgradePickaxe : MonoBehaviour
 {
     [SerializeField] private Animator anim;
-    private float speed;
-    private int costOfUpgrade;
+    private float speed = 0.5f;
+    private int costOfUpgrade = 10;
     [SerializeField] private Text costText;
     [SerializeField] private Text levelText;
-    public int currentLevel;
+    public int currentLevel = 1;
 
     [SerializeField] MoneyManager moneyManager;
 
     [DllImport("__Internal")]
     private static extern void AddPickaxeLevel();
 
-    private void Start()
+/*    private void Start()
     {
         costOfUpgrade = Progress.Instance.PlayerInfo.costPickaxeUpgrade;
         speed = Progress.Instance.PlayerInfo.pickaxeSpeed;
         currentLevel = Progress.Instance.PlayerInfo.pickaxeLevel;
         StartSetText();
-    }
+    }*/
     public void UpgradeCheck()
     {
         if(moneyManager.totalMoney >= costOfUpgrade)
@@ -43,20 +44,22 @@ public class UpgradePickaxe : MonoBehaviour
         SetText();
         // Добавьте логи для отладки
         Debug.Log("Upgraded Pickaxe. Speed: " + speed + ", Cost: " + costOfUpgrade + ", Level: " + currentLevel);
+
+        YandexGame.FullscreenShow();
     }
 
-    public void StartSetText()
+/*    public void StartSetText()
     {
         costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
-    }
+    }*/
 
     public void SetText()
     {
         costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
 
-        if (Progress.Instance.PlayerInfo.costPickaxeUpgrade != costOfUpgrade ||
+/*        if (Progress.Instance.PlayerInfo.costPickaxeUpgrade != costOfUpgrade ||
         Progress.Instance.PlayerInfo.pickaxeSpeed != speed ||
         Progress.Instance.PlayerInfo.pickaxeLevel != currentLevel)
         {
@@ -65,7 +68,7 @@ public class UpgradePickaxe : MonoBehaviour
             Progress.Instance.PlayerInfo.pickaxeLevel = currentLevel;
 
             Progress.Instance.Save();
-        }
+        }*/
     }
 
     public void ShowAdForUpgradePickaxe() //функция для кнопки

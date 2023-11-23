@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class RandomButtonPlace : MonoBehaviour
 {
@@ -13,7 +14,7 @@ public class RandomButtonPlace : MonoBehaviour
     private int randBlock;
     private Transform currentPlace;
 
-    private int costOfBlock;
+    private int costOfBlock = 2;
     [SerializeField] MoneyManager moneyManager;
 
     public int[] luckyRatio = {10, 5, 5, 5, 3, 3, 3, 3, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1 };
@@ -25,7 +26,8 @@ public class RandomButtonPlace : MonoBehaviour
 
     private void Start()
     {
-        luckyLevel = Progress.Instance.PlayerInfo.realLuckyLevel;
+        luckyLevel = luckyRatio.Length;
+        /*luckyLevel = Progress.Instance.PlayerInfo.realLuckyLevel;*/
     }
     public void SetNewPosition()
     {
@@ -43,16 +45,16 @@ public class RandomButtonPlace : MonoBehaviour
         if ( luckyLevel > 1 ) 
         {
             luckyLevel--;
-            Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
-            Progress.Instance.Save();
+/*            Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
+            Progress.Instance.Save();*/
         }
         else
         {
             upgradeLucky.SetMax();
-            if (Progress.Instance.PlayerInfo.realLuckyLevel != luckyLevel)
+/*            if (Progress.Instance.PlayerInfo.realLuckyLevel != luckyLevel)
             {
                 Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
-            }   
+            } */  
         }
     }
 
@@ -62,7 +64,9 @@ public class RandomButtonPlace : MonoBehaviour
 
         randNum = Random.Range(0, luckyLevel);
 
-        switch(randBlock)
+        YandexGame.FullscreenShow();
+
+        switch (randBlock)
         {
             case 0:
                 blockImage.sprite = Resources.Load<Sprite>("Blocks/Bambook");

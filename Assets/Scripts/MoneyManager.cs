@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
+using YG;
 
 public class MoneyManager : MonoBehaviour
 {
-    public int totalMoney;
+    public int totalMoney = 0;
     [SerializeField] Text moneyText;
 
     [DllImport("__Internal")]
@@ -14,8 +15,9 @@ public class MoneyManager : MonoBehaviour
 
     private void Start()
     {
-        totalMoney = Progress.Instance.PlayerInfo.coins;
-        StartSetText();
+        YandexGame.FullscreenShow();
+        /*totalMoney = Progress.Instance.PlayerInfo.coins;
+        StartSetText();*/
     }
 
     public void AddMoney(int money)
@@ -30,19 +32,20 @@ public class MoneyManager : MonoBehaviour
         SetText();
     }
 
-    private void StartSetText()
+/*    private void StartSetText()
     {
         moneyText.text = totalMoney.ToString();
-    }
+    }*/
+
     private void SetText()
     {
         moneyText.text = totalMoney.ToString();
 
-        if (Progress.Instance.PlayerInfo.coins != totalMoney)
+/*        if (Progress.Instance.PlayerInfo.coins != totalMoney)
         {
             Progress.Instance.PlayerInfo.coins = totalMoney;
             Progress.Instance.Save();
-        } 
+        } */
     }
 
     public void ShowAdForBonusMoney() //функция для кнопки
