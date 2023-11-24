@@ -39,8 +39,8 @@ public class UpgradeLucky : MonoBehaviour
     {
         if (moneyManager.totalMoney >= costOfUpgrade && !max)
         {
-            Upgrade();
             moneyManager.RemoveMoney(costOfUpgrade);
+            Upgrade();
         }
         else if (max)
         {

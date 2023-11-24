@@ -31,8 +31,8 @@ public class UpgradePickaxe : MonoBehaviour
     {
         if(moneyManager.totalMoney >= costOfUpgrade)
         {
-            Upgrade();
             moneyManager.RemoveMoney(costOfUpgrade);
+            Upgrade();
         }
     }
 
@@ -40,6 +40,7 @@ public class UpgradePickaxe : MonoBehaviour
     {
         speed += (0.2f * levels);
         anim.SetFloat("animSpeed", speed);
+        
         costOfUpgrade *= 2;
         currentLevel+= levels;
         SetText();
