@@ -16,26 +16,30 @@ public class UpgradePickaxe : MonoBehaviour
 
     [SerializeField] MoneyManager moneyManager;
 
-/*    private void Start()
+    private void Start()
     {
-        costOfUpgrade = Progress.Instance.PlayerInfo.costPickaxeUpgrade;
-        speed = Progress.Instance.PlayerInfo.pickaxeSpeed;
-        currentLevel = Progress.Instance.PlayerInfo.pickaxeLevel;
-        StartSetText();
-    }*/
+        if (YandexGame.SDKEnabled)
+        {
+            LoadSaveCloud();
+        }
+    }
+
+    private void OnEnable() => YandexGame.GetDataEvent += LoadSaveCloud;
+    private void OnDisable() => YandexGame.GetDataEvent -= LoadSaveCloud;
+
     public void UpgradeCheck()
     {
         if(moneyManager.totalMoney >= costOfUpgrade)
         {
             Upgrade();
+            moneyManager.RemoveMoney(costOfUpgrade);
         }
     }
 
     public void Upgrade(int levels = 1)
     {
-        speed += 0.2f;
+        speed += (0.2f * levels);
         anim.SetFloat("animSpeed", speed);
-        moneyManager.RemoveMoney(costOfUpgrade);
         costOfUpgrade *= 2;
         currentLevel+= levels;
         SetText();
@@ -45,33 +49,30 @@ public class UpgradePickaxe : MonoBehaviour
         YandexGame.FullscreenShow();
     }
 
-/*    public void StartSetText()
-    {
-        costText.text = costOfUpgrade.ToString();
-        levelText.text = currentLevel.ToString();
-    }*/
 
     public void SetText()
     {
         costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
 
-/*        if (Progress.Instance.PlayerInfo.costPickaxeUpgrade != costOfUpgrade ||
-        Progress.Instance.PlayerInfo.pickaxeSpeed != speed ||
-        Progress.Instance.PlayerInfo.pickaxeLevel != currentLevel)
-        {
-            Progress.Instance.PlayerInfo.costPickaxeUpgrade = costOfUpgrade;
-            Progress.Instance.PlayerInfo.pickaxeSpeed = speed;
-            Progress.Instance.PlayerInfo.pickaxeLevel = currentLevel;
-
-            Progress.Instance.Save();
-        }*/
+        MySave();
     }
 
-/*    public void ShowAdForUpgradePickaxe() //функция для кнопки
+    public void LoadSaveCloud()
     {
-        AddPickaxeLevel();
-        Time.timeScale = 0;
-        //music.volume = 0f;
-    }*/
+        currentLevel = YandexGame.savesData.pickaxeLevel;
+        costOfUpgrade = YandexGame.savesData.costPickaxeUpgrade;
+        speed = YandexGame.savesData.pickaxeSpeed;
+
+        SetText();
+    }
+
+    public void MySave()
+    {
+        YandexGame.savesData.pickaxeLevel = currentLevel;
+        YandexGame.savesData.costPickaxeUpgrade = costOfUpgrade;
+        YandexGame.savesData.pickaxeSpeed = speed;
+
+        YandexGame.SaveProgress();
+    }
 }

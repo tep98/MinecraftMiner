@@ -8,19 +8,30 @@ using YG;
 public class MoneyManager : MonoBehaviour
 {
     public int totalMoney = 0;
+    public int maxMoney = 0;
     [SerializeField] Text moneyText;
 
     private void Start()
     {
         YandexGame.FullscreenShow();
-        /*totalMoney = Progress.Instance.PlayerInfo.coins;
-        StartSetText();*/
+
+
+        if (YandexGame.SDKEnabled)
+        {
+            LoadSaveCloud();
+        }
+
     }
+
+    private void OnEnable() => YandexGame.GetDataEvent += LoadSaveCloud;
+    private void OnDisable() => YandexGame.GetDataEvent -= LoadSaveCloud;
 
     public void AddMoney(int money)
     {
         totalMoney += money;
         SetText();
+
+        TrySaveHighScore();
     }
 
     public void RemoveMoney(int money)
@@ -29,19 +40,41 @@ public class MoneyManager : MonoBehaviour
         SetText();
     }
 
-/*    private void StartSetText()
-    {
-        moneyText.text = totalMoney.ToString();
-    }*/
-
     private void SetText()
     {
         moneyText.text = totalMoney.ToString();
 
-/*        if (Progress.Instance.PlayerInfo.coins != totalMoney)
+        MySave();
+    }
+
+    public void LoadSaveCloud()
+    {
+        totalMoney = YandexGame.savesData.coins;
+        maxMoney = YandexGame.savesData.maxMoney;
+
+        SetText();
+    }
+
+    public void MySave()
+    {
+        YandexGame.savesData.coins = totalMoney;
+        YandexGame.savesData.maxMoney = maxMoney;
+
+        YandexGame.SaveProgress();
+    }
+
+    private void TrySaveHighScore()
+    {
+        if (totalMoney <= maxMoney)
         {
-            Progress.Instance.PlayerInfo.coins = totalMoney;
-            Progress.Instance.Save();
-        } */
+            return;
+        }
+        else
+        {
+            maxMoney = totalMoney;
+
+            YandexGame.NewLeaderboardScores("Leaderboard", maxMoney);
+        }
+        
     }
 }

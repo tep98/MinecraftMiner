@@ -27,8 +27,16 @@ public class RandomButtonPlace : MonoBehaviour
     private void Start()
     {
         luckyLevel = luckyRatio.Length;
-        /*luckyLevel = Progress.Instance.PlayerInfo.realLuckyLevel;*/
+
+        if (YandexGame.SDKEnabled)
+        {
+            LoadSaveCloud();
+        }
     }
+
+    private void OnEnable() => YandexGame.GetDataEvent += LoadSaveCloud;
+    private void OnDisable() => YandexGame.GetDataEvent -= LoadSaveCloud;
+
     public void SetNewPosition()
     {
         gameObject.GetComponent<Animator>().SetBool("playBreack", false);
@@ -38,24 +46,33 @@ public class RandomButtonPlace : MonoBehaviour
         Cross.position = currentPlace.position;
 
         SetNewBlock();
+
+        MySave();
     }
 
-    public void UpgradeLuckyLevel()
+    public void UpgradeLuckyLevel(int levels)
     {
         if ( luckyLevel > 1 ) 
         {
-            luckyLevel--;
-/*            Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
-            Progress.Instance.Save();*/
+            luckyLevel-= levels;
         }
         else
         {
-            upgradeLucky.SetMax();
-/*            if (Progress.Instance.PlayerInfo.realLuckyLevel != luckyLevel)
-            {
-                Progress.Instance.PlayerInfo.realLuckyLevel = luckyLevel;
-            } */  
+            upgradeLucky.SetMax(); 
         }
+        MySave();
+    }
+
+    public void LoadSaveCloud()
+    {
+        luckyLevel = YandexGame.savesData.realLuckyLevel;
+    }
+
+    public void MySave()
+    {
+        YandexGame.savesData.realLuckyLevel = luckyLevel;
+
+        YandexGame.SaveProgress();
     }
 
     public void SetNewBlock()

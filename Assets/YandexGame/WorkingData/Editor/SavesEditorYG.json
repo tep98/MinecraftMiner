@@ -1,0 +1,21 @@
+{
+  "idSave": 6,
+  "isFirstSession": false,
+  "language": "ru",
+  "promptDone": false,
+  "money": 1,
+  "newPlayerName": "Hello!",
+  "openLevels": [
+    false,
+    true,
+    false
+  ],
+  "coins": 0,
+  "pickaxeLevel": 1,
+  "luckyLevel": 1,
+  "realLuckyLevel": 85,
+  "costPickaxeUpgrade": 10,
+  "pickaxeSpeed": 0.5,
+  "costLuckyUpgrade": 10,
+  "maxMoney": 0
+}

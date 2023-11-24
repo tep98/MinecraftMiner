@@ -1621,12 +1621,12 @@ TextureImporter:
       name: GUI_37
       rect:
         serializedVersion: 2
-        x: 1379
-        y: 1191
+        x: 1380
+        y: 1139
         width: 274
         height: 273
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1642,12 +1642,12 @@ TextureImporter:
       name: GUI_38
       rect:
         serializedVersion: 2
-        x: 1721
-        y: 1194
+        x: 1713
+        y: 1140
         width: 274
         height: 274
       alignment: 0
-      pivot: {x: 0, y: 0}
+      pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

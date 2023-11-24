@@ -18,7 +18,14 @@ namespace YG
 
         // Ваши сохранения
 
-        // ...
+        public int coins = 0;
+        public int pickaxeLevel = 1;
+        public int luckyLevel = 1;
+        public int realLuckyLevel = 85;
+        public int costPickaxeUpgrade = 10;
+        public float pickaxeSpeed = 0.5f;
+        public int costLuckyUpgrade = 10;
+        public int maxMoney = 0;
 
         // Поля (сохранения) можно удалять и создавать новые. При обновлении игры сохранения ломаться не должны
 

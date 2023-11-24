@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using YG;
 using YG.Example;
+using System.Threading.Tasks;
 
 public class UiManager : MonoBehaviour
 {
@@ -15,11 +16,45 @@ public class UiManager : MonoBehaviour
     [SerializeField] Button luckyButton;
     [SerializeField] Button coinsButton;
 
+    [SerializeField] string _en;
+    [SerializeField] string _ru;
+
     private void Start()
     {
         pickaxeButton.onClick.AddListener(delegate { ExampleOpenRewardAd(1); });
         luckyButton.onClick.AddListener(delegate { ExampleOpenRewardAd(2); });
         coinsButton.onClick.AddListener(delegate { ExampleOpenRewardAd(3); });
+    }
+
+    private void OnEnable()
+    {
+        YandexGame.RewardVideoEvent += Rewarded;
+        YandexGame.GetDataEvent += GetData;
+    }
+
+    private void OnDisable()
+    {
+        YandexGame.RewardVideoEvent -= Rewarded;
+        YandexGame.GetDataEvent -= GetData;
+    }
+
+    public async void GetData()
+    {
+        while (!YandexGame.SDKEnabled)
+        {
+            await Task.Delay(200);
+        }
+        await Task.Delay(100);
+
+        if (YandexGame.EnvironmentData.language == "en")
+        {
+            luckyManager.GetMaxTextValue(_en);
+        }
+
+        if (YandexGame.EnvironmentData.language == "ru")
+        {
+            luckyManager.GetMaxTextValue(_ru);
+        }
     }
 
     private void ExampleOpenRewardAd(int id)
@@ -43,13 +78,5 @@ public class UiManager : MonoBehaviour
         }
     }
 
-    private void OnEnable()
-    {
-        YandexGame.RewardVideoEvent += Rewarded;
-    }
 
-    private void OnDisable()
-    {
-        YandexGame.RewardVideoEvent -= Rewarded;
-    }
 }
