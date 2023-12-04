@@ -81,67 +81,70 @@ public class RandomButtonPlace : MonoBehaviour
 
         randNum = Random.Range(0, luckyLevel);
 
-        YandexGame.FullscreenShow();
-
         switch (randBlock)
         {
             case 0:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/Bambook");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/tnt_side");
                 moneyManager.AddMoney(costOfBlock);
-                costOfBlock = 1 * luckyRatio[randNum];
+                costOfBlock = 4 * luckyRatio[randNum];
                 break;
             case 1:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/BrownWool");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/oak_planks");
                 moneyManager.AddMoney(costOfBlock);
                 costOfBlock = 2 * luckyRatio[randNum];
                 break;
             case 2:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/BEE");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/nether_gold_ore");
                 moneyManager.AddMoney(costOfBlock);
-                costOfBlock = 4 * luckyRatio[randNum];
+                costOfBlock = 3 * luckyRatio[randNum];
                 break;
             case 3:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/BlueWool");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/nether_bricks");
                 moneyManager.AddMoney(costOfBlock);
-                costOfBlock = 2 * luckyRatio[randNum];
+                costOfBlock = 1 * luckyRatio[randNum];
                 break;
             case 4:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/Brushes");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/melon_side");
                 moneyManager.AddMoney(costOfBlock);
                 costOfBlock = 1 * luckyRatio[randNum];
                 break;
             case 5:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/DarkWoodLogs");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/Obsidian");
                 moneyManager.AddMoney(costOfBlock);
                 costOfBlock = 3 * luckyRatio[randNum];
                 break;
             case 6:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/BlackWoodBlock");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/grass_block_side");
+                moneyManager.AddMoney(costOfBlock);
+                costOfBlock = 1 * luckyRatio[randNum];
+                break;
+            case 7:
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/end_stone");
                 moneyManager.AddMoney(costOfBlock);
                 costOfBlock = 2 * luckyRatio[randNum];
                 break;
-            case 7:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/Dirt");
-                moneyManager.AddMoney(costOfBlock);
-                costOfBlock = 1 * luckyRatio[randNum];
-                break;
             case 8:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/GrassBlock");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/emerald_ore");
                 moneyManager.AddMoney(costOfBlock);
-                costOfBlock = 1 * luckyRatio[randNum];
+                costOfBlock = 5 * luckyRatio[randNum];
                 break;
             case 9:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/LogsAkacia");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/chiseled_quartz_block_top");
                 moneyManager.AddMoney(costOfBlock);
                 costOfBlock = 3 * luckyRatio[randNum];
                 break;
             case 10:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/OakPlanks");
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/bricks");
+                moneyManager.AddMoney(costOfBlock);
+                costOfBlock = 2 * luckyRatio[randNum];
+                break;
+            case 11:
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/birch_log");
                 moneyManager.AddMoney(costOfBlock);
                 costOfBlock = 3 * luckyRatio[randNum];
                 break;
-            case 11:
-                blockImage.sprite = Resources.Load<Sprite>("Blocks/OakWood");
+            case 12:
+                blockImage.sprite = Resources.Load<Sprite>("Blocks/bee_nest_side");
                 moneyManager.AddMoney(costOfBlock);
                 costOfBlock = 2 * luckyRatio[randNum];
                 break;
