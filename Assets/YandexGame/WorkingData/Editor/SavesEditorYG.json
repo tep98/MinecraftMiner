@@ -1,5 +1,5 @@
 {
-  "idSave": 20,
+  "idSave": 220,
   "isFirstSession": false,
   "language": "ru",
   "promptDone": false,
@@ -10,12 +10,12 @@
     true,
     false
   ],
-  "coins": 15,
-  "pickaxeLevel": 2,
-  "luckyLevel": 1,
-  "realLuckyLevel": 85,
-  "costPickaxeUpgrade": 20,
-  "pickaxeSpeed": 0.7,
-  "costLuckyUpgrade": 10,
-  "maxMoney": 25
+  "coins": 96,
+  "pickaxeLevel": 9,
+  "luckyLevel": 7,
+  "realLuckyLevel": 79,
+  "costPickaxeUpgrade": 640,
+  "pickaxeSpeed": 2.10000014,
+  "costLuckyUpgrade": 160,
+  "maxMoney": 396
 }

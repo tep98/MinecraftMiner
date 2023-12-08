@@ -44,10 +44,12 @@ public class UpgradePickaxe : MonoBehaviour
         costOfUpgrade *= 2;
         currentLevel+= levels;
         SetText();
-        // Добавьте логи для отладки
-        Debug.Log("Upgraded Pickaxe. Speed: " + speed + ", Cost: " + costOfUpgrade + ", Level: " + currentLevel);
+        MySave();
 
-        YandexGame.FullscreenShow();
+        if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)
+        {
+            YandexGame.FullscreenShow();
+        }
     }
 
 

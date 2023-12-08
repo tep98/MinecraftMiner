@@ -50,13 +50,18 @@ public class UpgradeLucky : MonoBehaviour
 
     public void Upgrade(int levels = 1)
     {
-        randomButtonPlace.UpgradeLuckyLevel(levels);
+        randomButtonPlace.UpgradeLuckyLevel(levels * 2);
         
         costOfUpgrade *= 2;
         currentLevel+= levels;
         SetText();
+        MySave();
 
-        YandexGame.FullscreenShow();
+        if (YandexGame.timerShowAd >= YandexGame.Instance.infoYG.fullscreenAdInterval)
+        {
+            YandexGame.FullscreenShow();
+        }
+        
     }
 
     public void SetText()
@@ -64,7 +69,7 @@ public class UpgradeLucky : MonoBehaviour
         costText.text = costOfUpgrade.ToString();
         levelText.text = currentLevel.ToString();
 
-        if (currentLevel >= 87)
+        if (currentLevel >= 44)
         {
             SetMax();
         }
