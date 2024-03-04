@@ -15,7 +15,6 @@ public class MoneyManager : MonoBehaviour
     {
         YandexGame.FullscreenShow();
 
-
         if (YandexGame.SDKEnabled)
         {
             LoadSaveCloud();

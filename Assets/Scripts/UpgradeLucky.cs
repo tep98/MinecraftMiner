@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -21,10 +18,7 @@ public class UpgradeLucky : MonoBehaviour
 
     private void Start()
     {
-        if (YandexGame.SDKEnabled)
-        {
-            LoadSaveCloud();
-        } 
+        LoadSaveCloud();
     }
 
     private void OnEnable() => YandexGame.GetDataEvent += LoadSaveCloud;

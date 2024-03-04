@@ -1,6 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Runtime.InteropServices;
 using UnityEngine;
 using UnityEngine.UI;
 using YG;
@@ -66,6 +63,7 @@ public class UpgradePickaxe : MonoBehaviour
         currentLevel = YandexGame.savesData.pickaxeLevel;
         costOfUpgrade = YandexGame.savesData.costPickaxeUpgrade;
         speed = YandexGame.savesData.pickaxeSpeed;
+        anim.SetFloat("animSpeed", speed);
 
         SetText();
     }
