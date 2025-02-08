@@ -7,7 +7,7 @@ public class AdNotificationYG : MonoBehaviour
     [Tooltip("Объект, который будет активироваться перед открытием рекламы. И деактивироваться при открытии.")]
     public GameObject notificationObj;
     [Min(1), Tooltip("Максимальное время показа объекта нотификации. Если реклама так и не будет показана, то объект скроется через указанное в данном параметре время.")]
-    public float waitingForAds = 3;
+    public float waitingForAds = 2;
 
     public static bool showingNotification;
     public static AdNotificationYG Instance;
